@@ -1,0 +1,22 @@
+rabbitmq:
+  image: rabbitmq:management
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+
+zipkin-server:
+  image: openzipkin/zipkin
+  ports:
+    - "9411:9411"
+
+config-server:
+  image: tjonahen/configserver
+  ports:
+    - "8888:8888"
+  volumes:
+    - /home/ordina/NetBeansProjects/config:/config-repo
+
+eureka-server:
+  image: tjonahen/eurekaserver
+  ports:
+    - "8761:8761"
