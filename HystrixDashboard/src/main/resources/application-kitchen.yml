@@ -6,7 +6,7 @@ management:
 
 turbine:
     aggregator:
-        clusterConfig: DINER, BARTENDER
-    appConfig: diner, bartender
+        clusterConfig: CHEF
+    appConfig: chef
     instanceUrlSuffix:
         default: actuator/hystrix.stream

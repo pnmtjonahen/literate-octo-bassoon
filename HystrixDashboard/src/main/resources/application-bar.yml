@@ -1,0 +1,12 @@
+management:
+    endpoints:
+        web:
+            exposure:
+                include: "*"
+
+turbine:
+    aggregator:
+        clusterConfig: BARTENDER
+    appConfig: bartender
+    instanceUrlSuffix:
+        default: actuator/hystrix.stream
