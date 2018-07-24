@@ -37,7 +37,7 @@ mvn spring-boot:run -Dserver.port=7981 -Dspring.profiles.active=bar
 mvn spring-boot:run -Dserver.port=7982 -Dspring.profiles.active=kitchen
 ```
 
-profile can be either bar,kitchen or diner. The histryx dashboard wil start a turbine server to aggregate different hystrix stream from the same application.
+profile can be either bar,kitchen or diner. The hystrix dashboard wil start a turbine server to aggregate different hystrix stream from the same application.
 
 next download histrix single jar https://github.com/kennedyoliveira/standalone-hystrix-dashboard and start it
 
@@ -52,7 +52,7 @@ java -jar standalone-hystrix-dashboard-{version-downloaded}-all.jar
 |Zipkin|9411|http://localhost:9411/zipkin/|
 |Admin|7983|http://localhost:7983/#/applications|
 |RabbitMQ|5672, 15672|http://localhost:15672/ guest/guest|
-|HistryxDashboard/Turbine diner|7980|
-|HistryxDashboard/Turbine bar|7981|
-|HistryxDashboard/Turbine kitchen|7982|
-|HistryxDashboard combined|7979|http://localhost:7979/hystrix-dashboard/|
+|HystrixDashboard/Turbine diner|7980|
+|HystrixDashboard/Turbine bar|7981|
+|HystrixDashboard/Turbine kitchen|7982|
+|HystrixDashboard combined|7979|http://localhost:7979/hystrix-dashboard/|
