@@ -12,18 +12,17 @@ mvn clean install -P docker
 mvn clean install -P docker
 ```
 
+- Build spring boot admin
+```
+mvn clean install -P docker
+```
+
 Run docker-compose to start the services
 
 ```
 docker-compose up
 ```
 
-## Spring Boot Admin
-- Build and run the spring boot admin
-```
-mvn clean install
-mvn spring-boot:run
-```
 
 ## HystrixDashboard
 
@@ -39,7 +38,7 @@ mvn spring-boot:run -Dserver.port=7982 -Dspring.profiles.active=kitchen
 
 profile can be either bar,kitchen or diner. The hystrix dashboard wil start a turbine server to aggregate different hystrix stream from the same application.
 
-next download histrix single jar https://github.com/kennedyoliveira/standalone-hystrix-dashboard and start it
+next download hystrix single jar https://github.com/kennedyoliveira/standalone-hystrix-dashboard and start it
 
 ```
 java -jar standalone-hystrix-dashboard-{version-downloaded}-all.jar
