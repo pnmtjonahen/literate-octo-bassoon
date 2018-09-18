@@ -23,20 +23,22 @@ mvn clean install -P docker
 ```
 
 - Run docker-compose to start the services
+
 First get the local host IPadress, thisis added as extra_hosts to the docker images that need a eureka-server host name. This allows for client discovery outside the docker network.
+
 ```
 HOST_IP=`ip -4 addr show scope global dev wlp2s0 | grep inet | awk '{print \$2}' | cut -d / -f 1`
 export HOST_IP=$HOST_IP && docker-compose up
 ```
+## HystrixDashboard
+Enter the following eureka server adress:
+- http://localhost:8761/eureka/apps
 
-next download hystrix single jar https://github.com/kennedyoliveira/standalone-hystrix-dashboard and start it
-
-```
-java -jar standalone-hystrix-dashboard-{version-downloaded}-all.jar
-```
+This will get the configured hystrix streams from eureka.
 
 ## Ports
-Note: you need to openup your firewall to allow connections from within a docker container to you local host. Alse springboot admin will not be able to connect to the different spring boot applications
+Note: you need to openup your firewall to allow connections from within a docker container to you local host. Alse springboot admin will not be able to connect to the different spring boot applications.
+
 |name|port|url|
 |----|----|---|
 |Config|8888|

@@ -37,6 +37,7 @@ services:
     environment:
       - SERVER_PORT=7980
       - SPRING_PROFILES_ACTIVE=diner
+      - SPRING_APPLICATION_NAME=turbine-diner
     ports:
       - "7980:7980"
     depends_on:
@@ -49,6 +50,7 @@ services:
     environment:
       - SERVER_PORT=7981
       - SPRING_PROFILES_ACTIVE=bar
+      - SPRING_APPLICATION_NAME=turbine-bar
     ports:
       - "7981:7981"
     depends_on:
@@ -61,9 +63,18 @@ services:
     environment:
       - SERVER_PORT=7982
       - SPRING_PROFILES_ACTIVE=kitchen
+      - SPRING_APPLICATION_NAME=turbine-kitchen
     ports:
       - "7982:7982"
     depends_on:
       - eurekaserver
     extra_hosts:
       - "eureka-server:${HOST_IP}"
+
+  hystrix-server:
+    image: kennedyoliveira/hystrix-dashboard
+    ports:
+      - "7979:7979"
+    extra_hosts:
+      - "eureka-server:${HOST_IP}"
+      - "host-server:${HOST_IP}"
