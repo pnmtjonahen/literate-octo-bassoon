@@ -17,33 +17,26 @@ mvn clean install -P docker
 mvn clean install -P docker
 ```
 
-Run docker-compose to start the services
-
+- Build turbine-hystrix server
 ```
-docker-compose up
-```
-
-
-## HystrixDashboard
-
-As the dashboards needs to be able to load from a hystrix stream, and the application runs on localhost, Start the HystrixDashboard as a java application
-
-```
-mvn spring-boot:run -Dserver.port=7980 -Dspring.profiles.active=diner
-
-mvn spring-boot:run -Dserver.port=7981 -Dspring.profiles.active=bar
-
-mvn spring-boot:run -Dserver.port=7982 -Dspring.profiles.active=kitchen
+mvn clean install -P docker
 ```
 
-profile can be either bar,kitchen or diner. The hystrix dashboard wil start a turbine server to aggregate different hystrix stream from the same application.
+- Run docker-compose to start the services
+First get the local host IPadress, thisis added as extra_hosts to the docker images that need a eureka-server host name. This allows for client discovery outside the docker network.
+```
+HOST_IP=`ip -4 addr show scope global dev wlp2s0 | grep inet | awk '{print \$2}' | cut -d / -f 1`
+export HOST_IP=$HOST_IP && docker-compose up
+```
 
 next download hystrix single jar https://github.com/kennedyoliveira/standalone-hystrix-dashboard and start it
 
 ```
 java -jar standalone-hystrix-dashboard-{version-downloaded}-all.jar
 ```
+
 ## Ports
+Note: you need to openup your firewall to allow connections from within a docker container to you local host. Alse springboot admin will not be able to connect to the different spring boot applications
 |name|port|url|
 |----|----|---|
 |Config|8888|

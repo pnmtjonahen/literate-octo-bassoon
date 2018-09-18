@@ -1,59 +1,69 @@
-rabbitmq:
-  image: rabbitmq:management
-  ports:
-    - "5672:5672"
-    - "15672:15672"
+version: "2"
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 
-zipkin-server:
-  image: openzipkin/zipkin
-  ports:
-    - "9411:9411"
+  zipkinserver:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
 
-config-server:
-  image: tjonahen/configserver
-  ports:
-    - "8888:8888"
-  volumes:
-    - /home/ordina/NetBeansProjects/config:/config-repo
+  configserver:
+    image: tjonahen/configserver
+    ports:
+      - "8888:8888"
+    volumes:
+      - /home/ordina/NetBeansProjects/config:/config-repo
 
-eureka-server:
-  image: tjonahen/eurekaserver
-  ports:
-    - "8761:8761"
+  eurekaserver:
+    image: tjonahen/eurekaserver
+    ports:
+      - "8761:8761"
 
-admin-server:
-  image: tjonahen/adminserver
-  ports:
-    - "7983:7983"
-  links:
-    - eureka-server
+  adminserver:
+    image: tjonahen/adminserver
+    ports:
+      - "7983:7983"
+    depends_on:
+      - eurekaserver
+    extra_hosts:
+      - "eureka-server:${HOST_IP}"
 
-turbine-diner:
-  image: tjonahen/turbine-hystrix
-  environment:
-    - SERVER_PORT=7980
-    - SPRING_PROFILES_ACTIVE=diner
-  ports:
-    - "7980:7980"
-  links:
-    - eureka-server
+  turbine-diner:
+    image: tjonahen/turbine-hystrix
+    environment:
+      - SERVER_PORT=7980
+      - SPRING_PROFILES_ACTIVE=diner
+    ports:
+      - "7980:7980"
+    depends_on:
+      - eurekaserver
+    extra_hosts:
+      - "eureka-server:${HOST_IP}"
 
-turbine-bar:
-  image: tjonahen/turbine-hystrix
-  environment:
-    - SERVER_PORT=7981
-    - SPRING_PROFILES_ACTIVE=bar
-  ports:
-    - "7981:7981"
-  links:
-    - eureka-server
+  turbine-bar:
+    image: tjonahen/turbine-hystrix
+    environment:
+      - SERVER_PORT=7981
+      - SPRING_PROFILES_ACTIVE=bar
+    ports:
+      - "7981:7981"
+    depends_on:
+      - eurekaserver
+    extra_hosts:
+      - "eureka-server:${HOST_IP}"
 
-turbine-kitchen:
-  image: tjonahen/turbine-hystrix
-  environment:
-    - SERVER_PORT=7982
-    - SPRING_PROFILES_ACTIVE=kitchen
-  ports:
-    - "7982:7982"
-  links:
-    - eureka-server
+  turbine-kitchen:
+    image: tjonahen/turbine-hystrix
+    environment:
+      - SERVER_PORT=7982
+      - SPRING_PROFILES_ACTIVE=kitchen
+    ports:
+      - "7982:7982"
+    depends_on:
+      - eurekaserver
+    extra_hosts:
+      - "eureka-server:${HOST_IP}"
