@@ -1,23 +1,7 @@
 # Spring Boot Cloud application services
 
-- Build the Config server
+- Build the Config, Eureka, Admin and Turbine servers
 
-```
-mvn clean install -P docker
-```
-
-- Build the Eureka server
-
-```
-mvn clean install -P docker
-```
-
-- Build spring boot admin
-```
-mvn clean install -P docker
-```
-
-- Build turbine-hystrix server
 ```
 mvn clean install -P docker
 ```
@@ -30,14 +14,17 @@ First get the local host IPadress, thisis added as extra_hosts to the docker ima
 HOST_IP=`ip -4 addr show scope global dev wlp2s0 | grep inet | awk '{print \$2}' | cut -d / -f 1`
 export HOST_IP=$HOST_IP && docker-compose up
 ```
+
+Replace 'wlp2s0' with your network device to get your current IPadress
+ 
 ## HystrixDashboard
 Enter the following eureka server adress:
-- http://localhost:8761/eureka/apps
+- http://eureka-server:8761/eureka/apps
 
 This will get the configured hystrix streams from eureka.
 
 ## Ports
-Note: you need to openup your firewall to allow connections from within a docker container to you local host. Alse springboot admin will not be able to connect to the different spring boot applications.
+Note: you need to openup your firewall to allow connections from within a docker container to you local host. Else springboot admin will not be able to connect to the different spring boot applications.
 
 |name|port|url|
 |----|----|---|
