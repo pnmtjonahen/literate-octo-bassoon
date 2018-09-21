@@ -33,7 +33,7 @@ services:
       - "eureka-server:${HOST_IP}"
 
   turbine-diner:
-    image: tjonahen/turbine-hystrix
+    image: tjonahen/turbineserver
     environment:
       - SERVER_PORT=7980
       - SPRING_PROFILES_ACTIVE=diner
@@ -46,7 +46,7 @@ services:
       - "eureka-server:${HOST_IP}"
 
   turbine-bar:
-    image: tjonahen/turbine-hystrix
+    image: tjonahen/turbineserver
     environment:
       - SERVER_PORT=7981
       - SPRING_PROFILES_ACTIVE=bar
@@ -59,7 +59,7 @@ services:
       - "eureka-server:${HOST_IP}"
 
   turbine-kitchen:
-    image: tjonahen/turbine-hystrix
+    image: tjonahen/turbineserver
     environment:
       - SERVER_PORT=7982
       - SPRING_PROFILES_ACTIVE=kitchen

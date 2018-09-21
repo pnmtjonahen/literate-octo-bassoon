@@ -1,0 +1,7 @@
+turbine:
+    aggregator:
+        clusterConfig: CHEF
+    appConfig: chef
+    instanceUrlSuffix:
+        default: actuator/hystrix.stream
+

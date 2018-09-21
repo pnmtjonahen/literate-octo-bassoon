@@ -1,0 +1,6 @@
+turbine:
+    aggregator:
+        clusterConfig: DINER
+    appConfig: diner
+    instanceUrlSuffix:
+        default: actuator/hystrix.stream

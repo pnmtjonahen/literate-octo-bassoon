@@ -4,7 +4,7 @@
     <id>Config-Server</id>
     <files>
         <file>
-            <source>${project.build.directory}/turbine-hystrix-0.0.1-SNAPSHOT.jar</source>
+            <source>${project.build.directory}/turbineserver-0.0.1-SNAPSHOT.jar</source>
             <outputDirectory>jar/</outputDirectory>
         </file>
     </files>

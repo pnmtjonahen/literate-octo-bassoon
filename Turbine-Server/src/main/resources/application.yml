@@ -4,13 +4,6 @@ management:
             exposure:
                 include: "*"
 
-turbine:
-    aggregator:
-        clusterConfig: BARTENDER
-    appConfig: bartender
-    instanceUrlSuffix:
-        default: actuator/hystrix.stream
-
 eureka:
     instance:
         leaseRenewalIntervalInSeconds: 10
@@ -19,3 +12,4 @@ eureka:
         registryFetchIntervalSeconds: 5
         serviceUrl:
             defaultZone: http://eureka-server:8761/eureka/
+

@@ -46,7 +46,7 @@ Note: you need to openup your firewall to allow connections from within a docker
 |Zipkin|9411|http://localhost:9411/zipkin/|
 |Admin|7983|http://localhost:7983/#/applications|
 |RabbitMQ|5672, 15672|http://localhost:15672/ guest/guest|
-|HystrixDashboard/Turbine diner|7980|
-|HystrixDashboard/Turbine bar|7981|
-|HystrixDashboard/Turbine kitchen|7982|
+|HystrixDashboard/Turbine diner|7980|http://host-server:7980/turbine.stream?cluster=DINER|
+|HystrixDashboard/Turbine bar|7981|http://host-server:7981/turbine.stream?cluster=BARTENDER|
+|HystrixDashboard/Turbine kitchen|7982|http://host-server:7982/turbine.stream?cluster=CHEF|
 |HystrixDashboard combined|7979|http://localhost:7979/hystrix-dashboard/|
