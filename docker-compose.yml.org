@@ -45,12 +45,12 @@ services:
     extra_hosts:
       - "eureka-server:${HOST_IP}"
 
-  turbine-bar:
+  turbine-bartender:
     image: tjonahen/turbineserver
     environment:
       - SERVER_PORT=7981
-      - SPRING_PROFILES_ACTIVE=bar
-      - SPRING_APPLICATION_NAME=turbine-bar
+      - SPRING_PROFILES_ACTIVE=bartender
+      - SPRING_APPLICATION_NAME=turbine-bartender
     ports:
       - "7981:7981"
     depends_on:
@@ -58,12 +58,12 @@ services:
     extra_hosts:
       - "eureka-server:${HOST_IP}"
 
-  turbine-kitchen:
+  turbine-chef:
     image: tjonahen/turbineserver
     environment:
       - SERVER_PORT=7982
-      - SPRING_PROFILES_ACTIVE=kitchen
-      - SPRING_APPLICATION_NAME=turbine-kitchen
+      - SPRING_PROFILES_ACTIVE=chef
+      - SPRING_APPLICATION_NAME=turbine-chef
     ports:
       - "7982:7982"
     depends_on:
@@ -75,6 +75,8 @@ services:
     image: kennedyoliveira/hystrix-dashboard
     ports:
       - "7979:7979"
+    depends_on:
+      - eurekaserver
     extra_hosts:
       - "eureka-server:${HOST_IP}"
-      - "host-server:${HOST_IP}"
+      - "host-ip:${HOST_IP}"

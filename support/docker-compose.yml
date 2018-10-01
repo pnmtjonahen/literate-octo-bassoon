@@ -1,0 +1,54 @@
+version: "3.5"
+services:
+  zipkinserver:
+    image: openzipkin/zipkin
+    ports:
+      - "9411:9411"
+
+  adminserver:
+    image: tjonahen/adminserver
+    ports:
+      - "7983:7983"
+    extra_hosts:
+      - "eureka-server:${HOST_IP}"
+
+  turbine-diner:
+    image: tjonahen/turbineserver
+    environment:
+      - SERVER_PORT=7980
+      - SPRING_PROFILES_ACTIVE=diner
+      - SPRING_APPLICATION_NAME=turbine-diner
+    ports:
+      - "7980:7980"
+    extra_hosts:
+      - "eureka-server:${HOST_IP}"
+
+  turbine-bartender:
+    image: tjonahen/turbineserver
+    environment:
+      - SERVER_PORT=7981
+      - SPRING_PROFILES_ACTIVE=bartender
+      - SPRING_APPLICATION_NAME=turbine-bartender
+    ports:
+      - "7981:7981"
+    extra_hosts:
+      - "eureka-server:${HOST_IP}"
+
+  turbine-chef:
+    image: tjonahen/turbineserver
+    environment:
+      - SERVER_PORT=7982
+      - SPRING_PROFILES_ACTIVE=chef
+      - SPRING_APPLICATION_NAME=turbine-chef
+    ports:
+      - "7982:7982"
+    extra_hosts:
+      - "eureka-server:${HOST_IP}"
+
+  hystrix-server:
+    image: kennedyoliveira/hystrix-dashboard
+    ports:
+      - "7979:7979"
+    extra_hosts:
+      - "eureka-server:${HOST_IP}"
+      - "host-ip:${HOST_IP}"
