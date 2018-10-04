@@ -14,8 +14,6 @@
     <name>Local - Config Server</name>
     <description>Spring Boot cloud Config Server</description>
 
-
-
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

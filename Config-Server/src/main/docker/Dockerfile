@@ -1,4 +1,4 @@
-FROM java:alpine
+FROM openjdk:11-jdk-slim
 MAINTAINER Philippe Tjon-A-Hen (philippe@tjonahen.nl)
 
 COPY maven/jar/configserver-0.0.1-SNAPSHOT.jar /app/
