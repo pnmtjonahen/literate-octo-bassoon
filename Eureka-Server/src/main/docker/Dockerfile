@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk
+FROM openjdk:11-jdk-slim
 MAINTAINER Philippe Tjon-A-Hen (philippe@tjonahen.nl)
 
 COPY maven/jar/eurekaserver-0.0.1-SNAPSHOT.jar /app/
