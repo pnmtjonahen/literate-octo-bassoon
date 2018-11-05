@@ -21,10 +21,15 @@ Replace 'wlp2s0' with your network device to get your current IPadress
 Enter the following eureka server adress:
 - http://eureka-server:8761/eureka/apps
 
-This will get the configured hystrix streams from eureka.
+This will get the configured hystrix streams from eureka. Select the turbine streams as these will combine all hystrix streams from the different instances of the same service. Change te clustername from default into the correct clustername.
 
-or add the following streams:
--
+|name|cluster name|
+|----|------------|
+|diner|DINER|
+|bartender|BARTENDER|
+
+Note: The kitchen or chef service is not hystrix enabled.
+
 
 ## Ports
 Note: you need to openup your firewall to allow connections from within a docker container to you local host. Else springboot admin will not be able to connect to the different spring boot applications.

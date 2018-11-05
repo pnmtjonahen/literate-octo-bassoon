@@ -34,16 +34,16 @@ services:
     extra_hosts:
       - "eureka-server:${HOST_IP}"
 
-  turbine-chef:
-    image: tjonahen/turbineserver
-    environment:
-      - SERVER_PORT=7982
-      - SPRING_PROFILES_ACTIVE=chef
-      - SPRING_APPLICATION_NAME=turbine-chef
-    ports:
-      - "7982:7982"
-    extra_hosts:
-      - "eureka-server:${HOST_IP}"
+#  turbine-chef:
+#    image: tjonahen/turbineserver
+#    environment:
+#      - SERVER_PORT=7982
+#      - SPRING_PROFILES_ACTIVE=chef
+#      - SPRING_APPLICATION_NAME=turbine-chef
+#    ports:
+#      - "7982:7982"
+#    extra_hosts:
+#      - "eureka-server:${HOST_IP}"
 
   hystrix-server:
     image: kennedyoliveira/hystrix-dashboard
