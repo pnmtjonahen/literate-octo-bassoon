@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk-slim
+FROM openjdk:13-alpine
 MAINTAINER Philippe Tjon-A-Hen (philippe@tjonahen.nl)
 
 COPY maven/jar/adminserver-0.0.1-SNAPSHOT.jar /app/

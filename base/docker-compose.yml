@@ -11,7 +11,7 @@ services:
     ports:
       - "8888:8888"
     volumes:
-      - /home/ordina/NetBeansProjects/config:/config-repo
+      - /home/ordina/Projects/NetBeansProjects/config:/config-repo
 
   eurekaserver:
     image: tjonahen/eurekaserver
