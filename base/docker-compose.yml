@@ -17,3 +17,7 @@ services:
     image: tjonahen/eurekaserver
     ports:
       - "8761:8761"
+networks:
+  default:
+    external:
+      name: local-sb-network

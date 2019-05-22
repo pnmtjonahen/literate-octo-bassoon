@@ -52,3 +52,7 @@ services:
     extra_hosts:
       - "eureka-server:${HOST_IP}"
       - "host-ip:${HOST_IP}"
+networks:
+  default:
+    external:
+      name: local-sb-network
