@@ -1,5 +1,3 @@
 #!/bin/sh
-
-docker-compose logs --follow --no-color rabbitmq | cut -c 19- > /home/ordina/log/rabbitmq.log&
-docker-compose logs --follow --no-color configserver | cut -c 19- > /home/ordina/log/configserver.log&
-docker-compose logs --follow --no-color eurekaserver | cut -c 19- > /home/ordina/log/eurekaserver.log&
+docker exec -it -u splunk base_splunkforwarder_1 /bin/bash -c "/opt/splunkforwarder/bin/splunk add monitor /logs"
+docker exec -it -u splunk base_splunkforwarder_1 /bin/bash -c "/opt/splunkforwarder/bin/splunk add forward-server splunk:9997"
