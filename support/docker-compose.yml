@@ -1,16 +1,5 @@
 version: "3.5"
 services:
-  zipkinserver:
-    image: openzipkin/zipkin
-    ports:
-      - "9411:9411"
-
-  adminserver:
-    image: tjonahen/adminserver
-    ports:
-      - "7983:7983"
-    extra_hosts:
-      - "eureka-server:${HOST_IP}"
 
   turbine-diner:
     image: tjonahen/turbineserver

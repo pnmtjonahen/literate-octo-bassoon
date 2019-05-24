@@ -8,15 +8,21 @@ services:
 
   configserver:
     image: tjonahen/configserver
+    environment:
+      - PROGRAM_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9090 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false
     ports:
-      - "8888:8888"
+      - "8888:80"
+      - "9999:9090"
     volumes:
       - /home/ordina/Projects/NetBeansProjects/config:/config-repo
 
   eurekaserver:
     image: tjonahen/eurekaserver
+    environment:
+      - PROGRAM_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9090 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false
     ports:
-      - "8761:8761"
+      - "8761:80"
+      - "9761:9090"
 networks:
   default:
     external:
