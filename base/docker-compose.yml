@@ -10,7 +10,7 @@ services:
   configserver:
     image: tjonahen/configserver
     environment:
-      - PROGRAM_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9090 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false
+      - PROGRAM_OPTS=-Xlog:gc*:file=/logs/config-gc.log -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9090 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false
       - LOGGING_FILE=/logs/application-config.log
     ports:
       - "8888:80"
@@ -18,18 +18,22 @@ services:
     volumes:
       - /home/ordina/Projects/NetBeansProjects/config:/config-repo
       - vlogs:/logs
+     - "/etc/timezone:/etc/timezone:ro"
+     - "/etc/localtime:/etc/localtime:ro"
     restart: unless-stopped
 
   eurekaserver:
     image: tjonahen/eurekaserver
     environment:
-      - PROGRAM_OPTS=-Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9090 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false
+      - PROGRAM_OPTS=-Xlog:gc*:file=/logs/eureka-gc.log -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=9090 -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.local.only=false
       - LOGGING_FILE=/logs/application-eureka.log
     ports:
       - "8761:80"
       - "9761:9090"
     volumes:
       - vlogs:/logs
+     - "/etc/timezone:/etc/timezone:ro"
+     - "/etc/localtime:/etc/localtime:ro"
     restart: unless-stopped
 
   splunkforwarder:
@@ -39,6 +43,8 @@ services:
      - SPLUNK_PASSWORD=admin1234
     volumes:
      - vlogs:/logs
+     - "/etc/timezone:/etc/timezone:ro"
+     - "/etc/localtime:/etc/localtime:ro"
     restart: unless-stopped
 
 volumes:
