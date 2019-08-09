@@ -18,8 +18,8 @@ services:
     volumes:
       - /home/ordina/Projects/NetBeansProjects/config:/config-repo
       - vlogs:/logs
-     - "/etc/timezone:/etc/timezone:ro"
-     - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
     restart: unless-stopped
 
   eurekaserver:
@@ -32,19 +32,19 @@ services:
       - "9761:9090"
     volumes:
       - vlogs:/logs
-     - "/etc/timezone:/etc/timezone:ro"
-     - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
     restart: unless-stopped
 
   splunkforwarder:
     image: splunk/universalforwarder
     environment:
-     - SPLUNK_START_ARGS=--accept-license
-     - SPLUNK_PASSWORD=admin1234
+      - SPLUNK_START_ARGS=--accept-license
+      - SPLUNK_PASSWORD=admin1234
     volumes:
-     - vlogs:/logs
-     - "/etc/timezone:/etc/timezone:ro"
-     - "/etc/localtime:/etc/localtime:ro"
+      - vlogs:/logs
+      - "/etc/timezone:/etc/timezone:ro"
+      - "/etc/localtime:/etc/localtime:ro"
     restart: unless-stopped
 
 volumes:
