@@ -13,6 +13,12 @@
     <artifactId>zipkinserver</artifactId>
     <name>Local - Zipkin Server</name>
     <description>Zipkin server</description>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -55,6 +61,11 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
         </plugins>
     </build>
     <profiles>
@@ -90,7 +101,7 @@
                                 </goals>
                             </execution>
                         </executions>
-                    </plugin>                    
+                    </plugin>
                 </plugins>
             </build>
         </profile>
