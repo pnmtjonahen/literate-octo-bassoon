@@ -78,7 +78,7 @@
                     <executions>
                         <execution>
                             <id>docker-build</id>
-                            <phase>install</phase>
+                            <phase>verify</phase>
                             <goals>
                                 <goal>build</goal>
                             </goals>
